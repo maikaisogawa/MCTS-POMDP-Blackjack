@@ -37,6 +37,14 @@
 	```
 Using `exit` will exit the virtual environment i.e. it restores the system-level `Python` configurations to your shell. Whenever you want to resume working on the project, run `pipenv shell` while in the project directory to activate the virtual environment again.
 
+## Run Blackjack
+
+1. The main portion of our code is found in the blackjack.py file. To run this command on the command line:
+	```bash
+	python blackjack.py
+	```
+2. The output shows the expected utility for each approaches to Blackjack. Placing print statements throughout the code can give you more insight into certain actions taken by the agent.
+
 ## Footnotes
 
 <b id="f1">1)</b> The `pipenv` tool works by making a project-specific directory called a virtual environment that hold the dependencies for that project. After a virtual environment is activated, newly installed dependencies will automatically go into the virtual environment instead of being placed among your system-level `Python` packages. This precludes the possiblity of different projects on the same machine from having dependencies that conflict with one another. [↩](#a1)
