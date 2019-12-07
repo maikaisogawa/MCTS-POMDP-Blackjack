@@ -59,7 +59,7 @@ def random_policy(state):
     return np.random.randint(0,2)
 
 def belief_policy(state):
-    pseudo_dealer = state[2].copy()
+    pseudo_dealer = list(state[2])
     if calc_handscore(state[2]) < 17:
         drawn_card = draw_card_from_deck(state[0])
         pseudo_dealer[drawn_card] += 1
@@ -173,12 +173,12 @@ def init_rollout(gamma,state,depth,policy_func,init_action):
 def initial_state():
     deck = [4 for i in range(0,10)]
     hand = [0 for i in range(0,10)]
-    return [deck,hand.copy(),hand.copy()]
+    return [deck,list(hand),list(hand)]
 
 def end_state():
     deck = [0 for i in range(0,10)]
     hand = [0 for i in range(0,10)]
-    return [deck,hand.copy(),hand.copy()]
+    return [deck,list(hand),list(hand)]
 
 class MCTS:
     def __init__(self):
@@ -329,12 +329,12 @@ def possiblebelief(belief_state):
     possible_states = []
     for card in range(0,len(init_deck)):
         if init_deck[card] > 0:
-            possible_deck = init_deck.copy()
+            possible_deck = list(init_deck)
             possible_deck[card] += -1
-            possible_dealerhand = observed_dealerhand.copy()
+            possible_dealerhand = list(observed_dealerhand)
             possible_dealerhand[card] += 1
             for _ in range(0,init_deck[card]):
-                possible_states.append([possible_deck,agenthand.copy(),possible_dealerhand])
+                possible_states.append([possible_deck,list(agenthand),possible_dealerhand])
     return possible_states
 
 
@@ -378,7 +378,7 @@ def update_beliefstate(beliefstate,state,reward):
     else:
         #game continues, meaning agent hit without busting
         new_beliefstate = copy.deepcopy(beliefstate)
-        new_beliefstate[1] = state[1].copy()
+        new_beliefstate[1] = list(state[1])
         return new_beliefstate
         #agent has vision of new card in his hand
 
